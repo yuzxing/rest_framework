@@ -53,7 +53,12 @@ class SchoolSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+# tag标签的序列化
+class TagSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = models.Tag
+        fields = "__all__"
 
 
 
