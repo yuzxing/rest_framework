@@ -1,0 +1,47 @@
+[2018-08-02 19:19:55,991][Thread-1:15484][task_id:django.request][base.py:152][WARNING][Not Found: /]
+plugins[2018-08-02 19:38:05,087][Thread-3:5920][task_id:django.request][base.py:152][WARNING][Not Found: /]
+[2018-08-02 19:38:16,091][Thread-9:5880][task_id:django.request][base.py:152][WARNING][Not Found: /api/school/]
+[2018-08-02 19:38:21,986][Thread-15:9404][task_id:app01.views][views.py:112][WARNING][找不到学校信息...]
+[2018-08-02 19:38:21,987][Thread-15:9404][task_id:collect][views.py:113][INFO][2]
+[2018-08-02 19:38:21,987][Thread-15:9404][task_id:app01.views][views.py:116][INFO][我来获取名字为2学校详情]
+[2018-08-02 19:43:28,524][Thread-1:11428][task_id:django.request][base.py:152][WARNING][Not Found: /]
+[2018-08-02 20:03:16,917][Thread-3:2812][task_id:django.request][base.py:152][WARNING][Not Found: /]
+[2018-08-02 20:03:42,977][Thread-9:10424][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /api/article/]
+Traceback (most recent call last):
+  File "D:\python_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "D:\python_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python_env\lib\site-packages\django\views\decorators\csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\python_env\lib\site-packages\rest_framework\viewsets.py", line 103, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\python_env\lib\site-packages\rest_framework\views.py", line 483, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\python_env\lib\site-packages\rest_framework\views.py", line 443, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\python_env\lib\site-packages\rest_framework\views.py", line 480, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\python_env\lib\site-packages\rest_framework\mixins.py", line 48, in list
+    return Response(serializer.data)
+  File "D:\python_env\lib\site-packages\rest_framework\serializers.py", line 765, in data
+    ret = super(ListSerializer, self).data
+  File "D:\python_env\lib\site-packages\rest_framework\serializers.py", line 262, in data
+    self._data = self.to_representation(self.instance)
+  File "D:\python_env\lib\site-packages\rest_framework\serializers.py", line 683, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "D:\python_env\lib\site-packages\rest_framework\serializers.py", line 683, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "D:\python_env\lib\site-packages\rest_framework\serializers.py", line 510, in to_representation
+    fields = self._readable_fields
+  File "D:\python_env\lib\site-packages\django\utils\functional.py", line 35, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "D:\python_env\lib\site-packages\rest_framework\serializers.py", line 376, in _readable_fields
+    field for field in self.fields.values()
+  File "D:\python_env\lib\site-packages\rest_framework\serializers.py", line 363, in fields
+    for key, value in self.get_fields().items():
+  File "D:\python_env\lib\site-packages\rest_framework\serializers.py", line 997, in get_fields
+    serializer_class=self.__class__.__name__
+AssertionError: Class ArticleSerializer missing "Meta" attribute
