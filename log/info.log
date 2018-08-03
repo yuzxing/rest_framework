@@ -45,3 +45,35 @@ Traceback (most recent call last):
   File "D:\python_env\lib\site-packages\rest_framework\serializers.py", line 997, in get_fields
     serializer_class=self.__class__.__name__
 AssertionError: Class ArticleSerializer missing "Meta" attribute
+[2018-08-03 16:47:55,284][Thread-1:13016][task_id:django.request][base.py:152][WARNING][Not Found: /at/]
+[2018-08-03 20:39:27,482][Thread-1:11288][task_id:django.request][base.py:152][WARNING][Not Found: /]
+[2018-08-03 20:39:27,635][Thread-9:1852][task_id:django.request][base.py:152][WARNING][Not Found: /favicon.ico/]
+[2018-08-03 20:41:17,603][Thread-10:1560][task_id:django.request][base.py:152][WARNING][Not Found: /comment/]
+[2018-08-03 20:42:27,991][Thread-1:16808][task_id:django.request][base.py:152][WARNING][Not Found: /]
+[2018-08-03 20:42:28,156][Thread-3:3800][task_id:django.request][base.py:152][WARNING][Not Found: /favicon.ico/]
+[2018-08-03 20:44:53,021][Thread-1:2476][task_id:django.request][exception.py:135][ERROR][Internal Server Error: /api/login/]
+Traceback (most recent call last):
+  File "D:\python_env\lib\site-packages\django\core\handlers\exception.py", line 41, in inner
+    response = get_response(request)
+  File "D:\python_env\lib\site-packages\django\core\handlers\base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python_env\lib\site-packages\django\core\handlers\base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python_env\lib\site-packages\django\views\decorators\csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "D:\python_env\lib\site-packages\django\views\generic\base.py", line 68, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "D:\python_env\lib\site-packages\rest_framework\views.py", line 483, in dispatch
+    response = self.handle_exception(exc)
+  File "D:\python_env\lib\site-packages\rest_framework\views.py", line 443, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\python_env\lib\site-packages\rest_framework\views.py", line 480, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "D:\s11\study_drf\app01\views.py", line 187, in post
+    token = get_token_code(username)
+  File "D:\s11\study_drf\app01\views.py", line 160, in get_token_code
+    m.updata(bytes(timestamp, encoding="utf8"))
+AttributeError: '_hashlib.HASH' object has no attribute 'updata'
+[2018-08-03 20:47:48,376][Thread-3:13552][task_id:django.request][base.py:152][WARNING][Not Found: /]
+[2018-08-03 20:58:02,261][Thread-1:15808][task_id:django.request][base.py:152][WARNING][Not Found: /]
+[2018-08-03 20:58:02,414][Thread-3:16916][task_id:django.request][base.py:152][WARNING][Not Found: /favicon.ico/]

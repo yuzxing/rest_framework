@@ -34,4 +34,22 @@ class Tag(models.Model):
 class Comment(models.Model):
     content = models.CharField(max_length=128)
     article = models.ForeignKey(to='Article', on_delete=models.CASCADE)
+    user = models.ForeignKey(to="UserInfo", on_delete=models.CASCADE, default=1)
+
+
+# 创建用户表
+class UserInfo(models.Model):
+    username = models.CharField(max_length=16, unique=True)
+    password = models.CharField(max_length=32)
+
+    type = models.SmallIntegerField(
+        choices=((1, '普通用户'), (2, 'VIP用户')),
+        default=1
+    )
+
+
+# 创建一个token表
+class Token(models.Model):
+    token = models.CharField(max_length=128)
+    user = models.OneToOneField(to='UserInfo')
 

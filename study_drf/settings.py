@@ -199,3 +199,36 @@ LOGGING = {
         }
     },
 }
+
+REST_FRAMEWORK = {
+    # # 关于认证的全局配置
+    # "DEFAULT_AUTHENTICATION_CLASSES": ['app01.utils.auth.MyAuth', ],
+    # "DEFAULT_PERMISSION_CLASSES": ['app01.utils.permission.MyPermission'],
+    # "DEFAULT_THROTTLE_CLASSES": ['app01.utils.throttle.MyThrottle', ],
+    "DEFAULT_THROTTLE_RATES": {
+        "ooo": "5/m",
+        "xxx": "10/m"
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

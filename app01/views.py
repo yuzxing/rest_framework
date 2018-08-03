@@ -98,9 +98,9 @@ collect_logger = logging.getLogger('collect')
 
 
 # 终极继承
-class CommentViewSet(ModelViewSet):
-    queryset = models.Comment.objects.all()
-    serializer_class = app01_serializers.CommentSerializer
+# class CommentViewSet(ModelViewSet):
+#     queryset = models.Comment.objects.all()
+#     serializer_class = app01_serializers.CommentSerializer
 
 
 # class SchoolDetailView(APIView):
@@ -127,3 +127,118 @@ class SchoolViewSet(ModelViewSet):
 class ArticleViewSet(ModelViewSet):
     queryset = models.Article.objects.all()
     serializer_class = app01_serializers.ArticleSerializer
+
+
+# 自定义测试
+class At(APIView):
+
+    def get(self, request):
+        print(request.query_params)
+        print(request.query_params.get("name"))
+        return HttpResponse("GET")
+
+    def post(self, request):
+        print(request.data)
+        return HttpResponse("POST")
+
+    def put(self, request):
+        print(request.data)
+        return HttpResponse("put")
+
+
+# 生成 Token的函数
+def get_token_code(username):
+    """
+    根据用户名和时间戳生成用户登录成功的随机字符串
+    :param username: 字符串格式的用户名
+    :return: 字符串格式的Token
+    """
+    import time
+    import hashlib
+    timestamp = str(time.time())
+    m = hashlib.md5(bytes(username, encoding="utf8"))
+    m.update(bytes(timestamp, encoding="utf8"))
+    return m.hexdigest()
+
+
+# login函数
+class LoginView(APIView):
+    """
+    登录测试函数
+    1，接受用户发过来的(post)的用户名和密码数据
+    2，检验用户名和密码是否正确
+        --成功返回登录成功(发Token)
+        --失败就返回错误信息提示
+    """
+    def post(self, request):
+        res = {"code": 0}
+        # 从post里面取数据
+        logger.debug(request.data)
+        username = request.data.get("username")  # 从data里取数据
+        password = request.data.get("password")
+        # 去数据库查询
+        user_obj = models.UserInfo.objects.filter(
+            username=username,
+            password=password,
+        ).first()
+        if user_obj:
+            # 登录成功
+            # 生成 Token
+            token = get_token_code(username)
+            # 将token保存
+            # 用 user=user_obj这个条件去Token表里查询
+            # 如果有记录就更新defaults里面传的参数，没有记录就用defaults里传的参数创建一条数据
+            models.Token.objects.update_or_create(defaults={"token": token}, user=user_obj)
+            # 将Token返回给用户
+            res["token"] = token
+        else:
+            # 登录失败
+            res["code"] = 1
+            res["error"] = "用户名或密码错误"
+        return Response(res)
+
+
+from app01.utils.auth import MyAuth
+from app01.utils.permission import MyPermission
+from app01.utils.throttle import MyThrottle, VisitThrottle
+
+
+class CommentViewSet(ModelViewSet):
+    queryset = models.Comment.objects.all()
+    serializer_class = app01_serializers.CommentSerializer
+    authentication_classes = [MyAuth, ]
+    throttle_classes = [VisitThrottle, ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

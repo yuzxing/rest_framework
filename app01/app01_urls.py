@@ -17,7 +17,8 @@ urlpatterns = [
     #     "put": "update",
     #     "delete": "destroy"
     # })),
-
+    url(r'at/$', views.At.as_view()),  # 测试数据
+    url(r'login/$', views.LoginView.as_view()),  # login
 ]
 router = DefaultRouter()
 router.register(r"comment", views.CommentViewSet)
